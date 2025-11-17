@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图书馆位置上报</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .btn { 
+            display: block; 
+            width: 100%; 
+            padding: 20px; 
+            margin: 12px 0; 
+            font-size: 18px; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .lending { background: #ffb74d; color: #333; }
+        .study { background: #81c784; color: #333; }
+        .lobby { background: #64b5f6; color: #333; }
+        .reading { background: #e57373; color: #333; }
+        .lounge { background: #4dd0e1; color: #333; }
+        .gate { background: #fff176; color: #333; }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success { background: #4caf50; color: white; }
+        .error { background: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏛️ 图书馆位置上报</h1>
+        <p>请选择您当前所在区域</p>
+    </div>
+    
+    <button class="btn lending" onclick="reportLocation('lending')">
+        <span style="font-size: 24px;">📚</span><br>借书区
+    </button>
+    
+    <button class="btn study" onclick="reportLocation('study')">
+        <span style="font-size: 24px;">💻</span><br>自习室
+    </button>
+    
+    <button class="btn lobby" onclick="reportLocation('lobby')">
+        <span style="font-size: 24px;">🏛️</span><br>中央大厅
+    </button>
+    
+    <button class="btn reading" onclick="reportLocation('reading')">
+        <span style="font-size: 24px;">📖</span><br>阅览室
+    </button>
+    
+    <button class="btn lounge" onclick="reportLocation('lounge')">
+        <span style="font-size: 24px;">☕</span><br>休息区
+    </button>
+    
+    <button class="btn gate" onclick="reportLocation('gate')">
+        <span style="font-size: 24px;">🚪</span><br>大门
+    </button>
+    
+    <div id="statusMessage" class="status"></div>
+
+    <script>
+    function reportLocation(area) {
+        const statusElement = document.getElementById('statusMessage');
+        
+        // 显示上报中状态
+        statusElement.textContent = '上报中...';
+        statusElement.className = 'status success';
+        statusElement.style.display = 'block';
+        
+        // 模拟上报成功（后续会替换为真实的云函数调用）
+        setTimeout(() => {
+            statusElement.textContent = '✅ 位置上报成功！';
+            statusElement.className = 'status success';
+            
+            // 3秒后隐藏状态消息
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        }, 500);
+        
+        // 这里先打印到控制台，方便测试
+        console.log('上报区域:', area);
+    }
+    </script>
+</body>
+</html>
